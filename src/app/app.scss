@@ -1,0 +1,11 @@
+@import './../styles.scss';
+section {
+    @include dFlex();
+    flex-direction: column;
+    background-color: rgb(205, 205, 205);
+    h1 {
+        @include dFlex();
+        @include contentLimit();
+        background-color: rgb(96, 96, 181);
+    }
+}
