@@ -1,6 +1,6 @@
 <section>
-  <h1>To-Do List</h1>
-  @for (item of items(); track $index) {
-    <app-item [amount]="item.amount"></app-item>
+  <h1>Transactions</h1>
+  @for (transaction of transactions(); track $index) {
+    <app-item [amount]="transaction.amount" [category]="transaction.category" [currency]="transaction.currency" [date]="transaction.date"></app-item>
   }
 </section>

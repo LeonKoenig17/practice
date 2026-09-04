@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Item } from './src/item/item';
-import { Supabase } from './services/supabase';
+import { Transaction, TransactionsService } from './services/transactions.service';
 
 @Component({
   selector: 'app-root',
@@ -12,12 +12,22 @@ import { Supabase } from './services/supabase';
 export class App {
   protected readonly title = signal('practice');
 
-  private supabase = inject(Supabase);
+  private transactionService = inject(TransactionsService);
 
-  items = signal<Item[]>([]);
+  transactions = signal<Transaction[]>([]);
 
-  async ngOnInit() {
-    const data = await this.supabase.getItems();
-    this.items.set(data);
+  ngOnInit(): void {
+
+    this.transactionService.getTransactions().subscribe({
+      next: (data) => {
+        console.log('Transactions received:', data);
+        this.transactions.set(data);
+      },
+
+      error: (error) => {
+        console.error('Could not load transactions:', error);
+      }
+    });
+
   }
 }

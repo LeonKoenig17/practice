@@ -16,4 +16,7 @@ export interface Item {
 
 export class Item {
   @Input() amount: number = 0;
+  @Input() category: string = '';
+  @Input() currency: string = '';
+  @Input() date: string = '';
 }
