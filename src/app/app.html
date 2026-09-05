@@ -1,6 +1,10 @@
 <section>
-  <h1>Transactions</h1>
-  @for (transaction of transactions(); track $index) {
-    <app-item [amount]="transaction.amount" [category]="transaction.category" [currency]="transaction.currency" [date]="transaction.date"></app-item>
+  @for (category of categories; track category) {
+    <a [routerLink]="['/', category.route]" routerLinkActive="active"
+      [style.grid-column]="'span ' + category.cols"
+      [style.grid-row]="'span ' + category.rows"
+    >
+      <app-category [category]="category"></app-category>
+    </a>
   }
 </section>

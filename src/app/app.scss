@@ -1,11 +1,12 @@
 @import './../styles.scss';
 section {
-    @include dFlex();
-    flex-direction: column;
-    background-color: rgb(205, 205, 205);
-    h1 {
-        @include dFlex();
-        @include contentLimit();
-        background-color: rgb(96, 96, 181);
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(12, 100px);
+    gap: 6px;
+    padding: 20px;
+    a {
+        text-decoration: none;
+        color: black;
     }
 }
