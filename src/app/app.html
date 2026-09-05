@@ -1,10 +1,1 @@
-<section>
-  @for (category of categories; track category) {
-    <a [routerLink]="['/', category.route]" routerLinkActive="active"
-      [style.grid-column]="'span ' + category.cols"
-      [style.grid-row]="'span ' + category.rows"
-    >
-      <app-category [category]="category"></app-category>
-    </a>
-  }
-</section>
+<router-outlet></router-outlet>

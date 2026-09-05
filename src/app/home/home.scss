@@ -1,0 +1,13 @@
+@import './../../styles.scss';
+
+section {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(12, 100px);
+    gap: 6px;
+    padding: 20px;
+    a {
+        text-decoration: none;
+        color: black;
+    }
+}

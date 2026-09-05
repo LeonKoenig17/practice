@@ -19,9 +19,10 @@ import { Library } from './categories/data/library/library';
 import { Knowledge } from './categories/data/knowledge/knowledge';
 import { SmartControl } from './categories/data/smart-control/smart-control';
 import { PhoneMonitoring } from './categories/data/phone-monitoring/phone-monitoring';
+import { Home } from './home/home';
 
 export const routes: Routes = [
-    {path: '', component: App},
+    {path: '', component: Home},
     {path: 'todo', component: Todo},
     {path: 'calendar', component: Calendar},
     {path: 'weather', component: Weather},
