@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
-import { Transaction, TransactionsService } from '../services/transactions.service';
 import { Category } from '../category/category';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { DatabaseService, TodoItem } from '../services/database-service';
 
 @Component({
   selector: 'app-home',
@@ -11,10 +11,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class Home {
   protected readonly title = signal('practice');
-
-  private transactionService = inject(TransactionsService);
-
-  transactions = signal<Transaction[]>([]);
+  private databaseService = inject(DatabaseService);
+  todo = signal<TodoItem[]>([]);
 
   categories: any[] = [
     { title: "To-Do", route: 'todo', cols: 2, rows: 2},
@@ -39,15 +37,17 @@ export class Home {
   ]
 
   ngOnInit(): void {
+    this.loadTodo();
+  }
 
-    this.transactionService.getTransactions().subscribe({
+  loadTodo() {
+    this.databaseService.getTodo().subscribe({
       next: (data) => {
-        console.log('Transactions received:', data);
-        this.transactions.set(data);
+        console.log('todo received:', data);
+        this.todo.set(data);
       },
-
       error: (error) => {
-        console.error('Could not load transactions:', error);
+        console.error('Could not load todo:', error);
       }
     });
   }

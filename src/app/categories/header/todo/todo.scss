@@ -1,0 +1,102 @@
+@import "./../../../../styles.scss";
+
+:host {
+    display: block;
+    background-color: lightblue;
+    min-height: 100vh;
+    height: 100%;
+}
+
+section {
+    @include dFlex();
+    @include contentLimit($padX: 0px);
+    .items-container {
+        width: 100%;
+        padding: 20px;
+        .item {
+            @include dFlex($jc: space-between);
+            background-color: rgb(104, 180, 206);
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            p {
+                margin: 0;
+            }
+            button {
+                height: 24px;
+                img {
+                    height: 100%;
+                }
+            }
+        }
+        .add-item {
+            @include dFlex();
+            border: 6px dashed rgb(104, 180, 206);
+            border-radius: 10px;
+            img {
+                width: 48px;
+            }
+        }
+    }
+}
+
+.add-item-interface {
+    background-color: rgb(206, 229, 237);
+    border: 6px dashed rgb(104, 180, 206);
+    border-radius: 10px;
+    padding: 10px;
+    .close-button {
+        @include dFlex($jc: flex-end);
+        img {
+            width: 48px;
+        }
+    }
+    label {
+        margin-bottom: 10px;
+    }
+    input {
+        width: calc(90% - 20px);
+        margin-bottom: 10px;
+        border: none;
+        border-radius: 10px;
+        padding: 10px;
+    }
+    .add-new-item-button {
+        @include dFlex();
+        button {
+            border: 2px solid rgb(104, 180, 206);
+            border-radius: 10px;
+            padding: 0;
+            width: 50px;
+            height: 50px;
+            img {
+                width: 100%;
+            }
+        }
+    }
+}
+
+.edit-item {
+    width: 100%;
+    .input-line {
+        @include dFlex($jc: space-between);
+    }
+}
+
+input {
+    width: calc(80% - 20px);
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+button {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.error {
+    margin: 0;
+    color: red;
+}

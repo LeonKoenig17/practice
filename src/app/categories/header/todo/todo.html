@@ -1,1 +1,50 @@
-<p>todo works!</p>
+<section>
+    <div class="items-container">
+        @for (item of todo(); track item.id) {
+            <div class="item">
+                @if (editingItemId !== item.id) {
+                    <p>- {{ item.description }}</p>
+                    <button (click)="openEditInterface(item)"><img src="/images/edit.svg" alt="edit-button"></button>
+                } @else {
+                    <form class="edit-item" [formGroup]="inputForm" (ngSubmit)="updateTodo(item.id)">
+                        <div class="input-line">
+                            <input type="text" formControlName="editControl">
+                            <button type="button" (click)="closeEditInterface()"><img src="/images/cancel.svg" alt="cancel-button"></button>
+                            <button type="submit"><img src="/images/confirm.svg" alt="confirm-button"></button>
+                        </div>
+                        @if (
+                            inputForm.controls.editControl.invalid &&
+                            inputForm.controls.editControl.touched
+                        ) {
+                            <p class="error">Please enter a task!</p>
+                        }
+                    </form>
+                }
+            </div>
+        }
+        @if (!isOpen) {
+            <div class="add-item" (click)="openInterface()">
+                <img src="/images/plus.svg" alt="add-item">
+            </div>
+        } @else {
+            <div class="add-item-interface">
+                <div class="close-button">
+                    <button (click)="closeInterface()"><img src="/images/close-cirlce.svg" alt="close-button"></button>
+                </div>
+                <form [formGroup]="inputForm" (ngSubmit)="onSubmit()">
+                    <label for="item-input">Task description:</label>
+                    <input type="text" id="item-input" formControlName="inputControl">
+                    @if (
+                        inputForm.controls.inputControl.invalid &&
+                        inputForm.controls.inputControl.touched
+                    ) {
+                        <p class="error">Please enter a task!</p>
+                    }
+                    <div class="add-new-item-button">
+                        <button type="submit"><img src="/images/plus.svg" alt=""></button>
+                    </div>
+                </form>
+            </div>
+        }
+    </div>
+</section>
